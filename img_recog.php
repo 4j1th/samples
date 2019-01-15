@@ -6,9 +6,6 @@
 
 <?php
 
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-
 // includes the autoloader for libraries installed with composer
 require '/home/bigday/vendor/autoload.php';
 
