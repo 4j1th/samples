@@ -9,30 +9,27 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-/**
- * register Google Cloud Storage
- */
-require '/home/ajith/vendor/autoload.php';
+// includes the autoloader for libraries installed with composer
+require '/home/bigday/vendor/autoload.php';
 
-
+// register Google Cloud Storage
 use Google\Cloud\Storage\StorageClient;
 $storage = new StorageClient();
 $storage->registerStreamWrapper();
 
-# imports the Google Cloud client library
+// imports the Google Cloud client library
 use Google\Cloud\Vision\V1\ImageAnnotatorClient;
 
-# instantiates a client
+// instantiates a client
 $imageAnnotator = new ImageAnnotatorClient();
 
-# the name of the image file to annotate
-// $fileName = "gs://bigday-regional-mumbai/w_800/events/119/raw/43/images/9485.jpg";
+// the name of the image file to annotate
 $fileName = "60595.jpg";
 
-# prepare the image to be annotated
+// prepare the image to be annotated
 $image = file_get_contents($fileName);
 
-# performs label detection on the image file
+// performs label detection on the image file
 $response = $imageAnnotator->labelDetection($image);
 $labels = $response->getLabelAnnotations();
 
